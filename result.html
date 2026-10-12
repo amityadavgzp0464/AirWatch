@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123b32">
+  <title>AirWatch | AQI Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+  <div class="site-shell dashboard-shell">
+    <header class="topbar">
+      <a class="back-link" href="index.html">← Search another city</a>
+      <a class="brand" href="index.html">
+        <span class="brand-mark">✳</span>
+        <span><strong>AirWatch</strong><small>Air Quality Monitoring</small></span>
+      </a>
+    </header>
+
+    <main>
+      <section class="dashboard-heading">
+        <div>
+          <span class="eyebrow dark-eyebrow">CITY AIR REPORT</span>
+          <h1 id="cityTitle">Loading city…</h1>
+          <p id="locationSubtitle">Finding location and current available readings.</p>
+        </div>
+        <div class="updated-badge"><span class="status-dot"></span><span id="updatedAt">Loading data…</span></div>
+      </section>
+
+      <div id="loading" class="loading-panel">
+        <div class="spinner"></div>
+        <div><strong>Checking air quality</strong><p>Looking up the city and requesting the latest available readings.</p></div>
+      </div>
+      <div id="errorPanel" class="error-panel" role="alert" hidden>
+        <strong>We couldn't load this city's air quality.</strong>
+        <p id="errorMessage">Check the spelling and try again.</p>
+        <a class="button-link" href="index.html">Try another city</a>
+      </div>
+
+      <div id="dashboard" hidden>
+        <section class="overview-grid">
+          <article class="aqi-hero-card">
+            <div class="aqi-card-top">
+              <div><span class="eyebrow">US AIR QUALITY INDEX</span><p class="muted-light">Current available reading</p></div>
+              <span class="sun-icon" aria-hidden="true">☀</span>
+            </div>
+            <div class="aqi-main">
+              <div id="aqiRing" class="aqi-ring"><div><strong id="aqiValue">—</strong><span>AQI</span></div></div>
+              <div class="aqi-summary"><span id="aqiStatus" class="status-label">—</span><h2 id="aqiHeadline">Air quality report</h2><p id="aqiDescription">Readings and guidance will appear here.</p></div>
+            </div>
+            <div class="aqi-card-foot"><span>●</span> AQI categories use the US AQI scale.</div>
+          </article>
+
+          <article class="advice-card">
+            <span class="eyebrow dark-eyebrow">HEALTH GUIDANCE</span>
+            <div class="advice-symbol" aria-hidden="true">♥</div>
+            <h2 id="healthTitle">Everyday guidance</h2>
+            <p id="healthMessage">Use the current AQI as one factor when planning outdoor activities.</p>
+            <p class="advice-note">General information only; follow local public-health advice, especially during pollution events.</p>
+          </article>
+        </section>
+
+        <section class="dashboard-section">
+          <div class="section-heading">
+            <span class="eyebrow dark-eyebrow">WHAT'S IN THE AIR?</span>
+            <h2>Pollutant readings</h2>
+            <p>Concentrations are shown in micrograms per cubic metre (µg/m³), where available.</p>
+          </div>
+          <div class="pollutant-grid">
+            <article class="pollutant-card"><span class="pollutant-symbol">PM</span><div><h3>PM2.5</h3><p>Fine particles</p></div><strong id="pm25">—</strong><small>µg/m³</small></article>
+            <article class="pollutant-card"><span class="pollutant-symbol">PM</span><div><h3>PM10</h3><p>Coarse particles</p></div><strong id="pm10">—</strong><small>µg/m³</small></article>
+            <article class="pollutant-card"><span class="pollutant-symbol">O₃</span><div><h3>Ozone</h3><p>Ground-level ozone</p></div><strong id="o3">—</strong><small>µg/m³</small></article>
+            <article class="pollutant-card"><span class="pollutant-symbol">NO₂</span><div><h3>Nitrogen dioxide</h3><p>Combustion-related gas</p></div><strong id="no2">—</strong><small>µg/m³</small></article>
+            <article class="pollutant-card"><span class="pollutant-symbol">SO₂</span><div><h3>Sulphur dioxide</h3><p>Often linked to fuel burning</p></div><strong id="so2">—</strong><small>µg/m³</small></article>
+            <article class="pollutant-card"><span class="pollutant-symbol">CO</span><div><h3>Carbon monoxide</h3><p>Combustion-related gas</p></div><strong id="co">—</strong><small>µg/m³</small></article>
+          </div>
+        </section>
+
+        <section class="dashboard-section">
+          <div class="section-heading">
+            <span class="eyebrow dark-eyebrow">AQI REFERENCE</span>
+            <h2>What does the number mean?</h2>
+            <p>These are US AQI categories. Local authorities may use a different index or category thresholds.</p>
+          </div>
+          <div class="aqi-scale">
+            <div class="scale-chip good"><strong>0–50</strong><span>Good</span></div>
+            <div class="scale-chip moderate"><strong>51–100</strong><span>Moderate</span></div>
+            <div class="scale-chip sensitive"><strong>101–150</strong><span>Unhealthy for sensitive groups</span></div>
+            <div class="scale-chip unhealthy"><strong>151–200</strong><span>Unhealthy</span></div>
+            <div class="scale-chip very"><strong>201–300</strong><span>Very unhealthy</span></div>
+            <div class="scale-chip hazardous"><strong>301+</strong><span>Hazardous</span></div>
+          </div>
+        </section>
+        <p class="data-disclaimer">Data note: readings are modelled/forecast data supplied by Open-Meteo and may not match a nearby government monitoring station. Some pollutants may be unavailable for a location or hour.</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <a class="brand footer-brand" href="index.html"><span class="brand-mark">✳</span><span><strong>AirWatch</strong><small>Monitor air. Make informed choices.</small></span></a>
+      <p>Air-quality data by Open-Meteo. Not a substitute for official local alerts or medical advice.</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

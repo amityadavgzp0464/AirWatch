@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123b32">
+  <title>AirWatch | Check Your City's Air</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-page">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="AirWatch home">
+        <span class="brand-mark">✳</span>
+        <span><strong>AirWatch</strong><small>Air Quality Monitoring</small></span>
+      </a>
+      <span class="live-pill"><span class="status-dot"></span> AIR QUALITY, MADE CLEAR</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">BREATHE A LITTLE EASIER</span>
+          <h1>Know your air.<br><span>Breathe better.</span></h1>
+          <p>Check the latest available air-quality readings for your city, understand what they mean, and make more informed plans for your day.</p>
+          <div class="hero-highlights">
+            <span>✓ City-based readings</span>
+            <span>✓ Key pollutants</span>
+            <span>✓ Practical health guidance</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="planet">🌍</div>
+          <span class="float-leaf leaf-a">🍃</span><span class="float-leaf leaf-b">🌿</span>
+          <span class="air-label">YOUR AIR<br><strong>MATTERS</strong></span>
+        </div>
+      </section>
+
+      <section class="search-panel" aria-labelledby="search-title">
+        <div class="search-intro">
+          <div>
+            <span class="eyebrow dark-eyebrow">START WITH YOUR CITY</span>
+            <h2 id="search-title">Check your city's air</h2>
+            <p>Enter a city name to open its air-quality dashboard in a new tab.</p>
+          </div>
+          <div class="pin-icon" aria-hidden="true">⌖</div>
+        </div>
+        <form id="cityForm" class="search-form">
+          <label for="city">City name</label>
+          <div class="search-controls">
+            <input id="city" name="city" type="text" placeholder="e.g. Delhi, Mumbai, Lucknow" autocomplete="off" required maxlength="100">
+            <button type="submit">Check AQI <span aria-hidden="true">↗</span></button>
+          </div>
+          <p id="error" class="form-error" role="alert"></p>
+        </form>
+        <div class="hint">Tip: Use a city name such as Delhi, Bhopal, Pune, Jaipur or Bengaluru.</div>
+      </section>
+
+      <section class="feature-grid" aria-label="AirWatch features">
+        <article class="feature-card">
+          <span class="feature-icon mint">◉</span>
+          <h3>What is AQI?</h3>
+          <p>The Air Quality Index summarizes air pollution levels. Higher values generally mean greater health concern.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon blue">〰</span>
+          <h3>Know the pollutants</h3>
+          <p>Explore readings for fine particles, coarse particles, ozone and other common air pollutants.</p>
+        </article>
+        <article class="feature-card feature-alert">
+          <span class="feature-icon coral">♥</span>
+          <h3>Make informed choices</h3>
+          <p>Use air-quality information to consider outdoor activity and take extra care when pollution is elevated.</p>
+        </article>
+      </section>
+
+      <section class="guide-panel">
+        <div class="section-heading">
+          <span class="eyebrow dark-eyebrow">A QUICK GUIDE</span>
+          <h2>Understand the AQI scale</h2>
+          <p>This dashboard displays the US AQI scale as provided by the data source.</p>
+        </div>
+        <div class="aqi-scale">
+          <div class="scale-chip good"><strong>0–50</strong><span>Good</span></div>
+          <div class="scale-chip moderate"><strong>51–100</strong><span>Moderate</span></div>
+          <div class="scale-chip sensitive"><strong>101–150</strong><span>Unhealthy for sensitive groups</span></div>
+          <div class="scale-chip unhealthy"><strong>151–200</strong><span>Unhealthy</span></div>
+          <div class="scale-chip very"><strong>201–300</strong><span>Very unhealthy</span></div>
+          <div class="scale-chip hazardous"><strong>301+</strong><span>Hazardous</span></div>
+        </div>
+      </section>
+
+      <section class="steps-panel">
+        <div class="section-heading">
+          <span class="eyebrow">THREE SIMPLE STEPS</span>
+          <h2>How AirWatch works</h2>
+        </div>
+        <div class="steps-grid">
+          <article><span>01</span><div><h3>Enter a city</h3><p>Type the city you want to check.</p></div></article>
+          <article><span>02</span><div><h3>Load the readings</h3><p>AirWatch looks up the location and requests available data.</p></div></article>
+          <article><span>03</span><div><h3>Understand your air</h3><p>Review AQI, pollutant readings and general guidance.</p></div></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a class="brand footer-brand" href="index.html"><span class="brand-mark">✳</span><span><strong>AirWatch</strong><small>Monitor air. Make informed choices.</small></span></a>
+      <p>Air-quality readings provided by Open-Meteo. Data availability and update times can vary by location.</p>
+    </footer>
+  </div>
+  <script>
+    document.getElementById("cityForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const city = document.getElementById("city").value.trim();
+      const error = document.getElementById("error");
+      error.textContent = "";
+      if (!city) {
+        error.textContent = "Please enter a city name.";
+        return;
+      }
+      const resultUrl = "result.html?city=" + encodeURIComponent(city);
+      const resultTab = window.open(resultUrl, "_blank");
+      if (!resultTab) {
+        error.textContent = "Your browser blocked the new tab. Please allow pop-ups for this page and try again.";
+      }
+    });
+  </script>
+</body>
+</html>
